@@ -1,4 +1,5 @@
 from process import Process
+from memory import Memory
 import random, string
 
 def verifyMemory(memory, size):
@@ -13,6 +14,8 @@ def verifyMemory(memory, size):
 
 
 memory = {}
+memoryTest = Memory()
+memoryTest.insertMemory()
 
 for i in range(0, 20):
     memory[i] = '-'
@@ -22,20 +25,14 @@ p1.size = 3
 p1.id = 'A'
 p1.posInit = verifyMemory(memory, p1.size)
 
-for i in memory.keys():
-    if i == p1.posInit:
-        for x in range(p1.posInit, p1.posInit+p1.size):
-            memory[x] = p1.id
+p1.insertDict(memory)
 
 p2 = Process()
 p2.size = 5
 p2.id = 'B'
 p2.posInit = verifyMemory(memory, p2.size)
 
-for i in memory.keys():
-    if i == p2.posInit:
-        for x in range(p2.posInit, p2.posInit+p2.size):
-            memory[x] = p2.id
+p2.insertDict(memory)
 
 aux = 0
 for elemento in memory.keys():
@@ -45,5 +42,9 @@ for elemento in memory.keys():
         print()
         aux = 0
 
+print('\n\n')
+
+# memoryTest.printMemory()
+print(memoryTest.dict)
 # print(verifyMemory(memory, 4))
 
