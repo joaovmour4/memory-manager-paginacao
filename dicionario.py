@@ -1,5 +1,7 @@
 from process import Process
 from memory import Memory
+from time import sleep
+import os
 
 memory = Memory()
 process = []
@@ -7,5 +9,15 @@ process = []
 for i in range(0, 7):
     process.append(Process(memory.dict))
 
-memory.printMemory()
+while True:
+    process.append(Process(memory.dict))
+    memory.printMemory()
+    for proc in process:
+        proc.time -= 1
+        if proc.time == 0:
+            proc.removeDict(memory.dict)
+            process.remove(proc)
+    sleep(2)
+    os.system('cls')
+
 

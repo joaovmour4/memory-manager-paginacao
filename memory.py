@@ -18,7 +18,7 @@ class Memory:
     def printMemory(self):
         aux = 0
         for elemento in self.dict.keys():
-            print(f'{elemento}\t {self.dict[elemento]}', end='\t\t\t')
+            print(f'{elemento}.\t {self.dict[elemento]}', end='\t\t')
             aux += 1
             if aux == 5:
                 print()
