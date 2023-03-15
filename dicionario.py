@@ -1,7 +1,10 @@
 from process import Process
 from memory import Memory
 from time import sleep
+from tkinter import *
 import os
+
+root = Tk()
 
 memory = Memory()
 process = []
@@ -20,4 +23,4 @@ while True:
     sleep(2)
     os.system('cls')
 
-
+root.mainloop()
