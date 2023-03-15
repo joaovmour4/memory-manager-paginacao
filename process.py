@@ -1,13 +1,19 @@
-import random, string
+import random
+import string
+from memory import Memory
 
 class Process:
-    def __int__(self):
-        self.id = random.choice(string.ascii_letters)
+    def __init__(self, memory):
+        self.id = random.choice(string.ascii_uppercase)
         self.size = random.randint(1, 5)
-        self.posInit = None
+        self.posInit = Memory.verifyMemory(memory, self.size)
+        self.insertDict(memory)
 
     def insertDict(self, memoryDict):
-        for i in memoryDict.keys():
-            if i == self.posInit:
-                for x in range(self.posInit, self.posInit + self.size):
-                    memoryDict[x] = self.id
+        if type(self.posInit) == int:
+            for i in memoryDict.keys():
+                if i == self.posInit:
+                    for x in range(self.posInit, self.posInit + self.size):
+                        memoryDict[x] = self.id
+        else:
+            print(f'O processo {self.id} não foi alocado por falta de memória!')

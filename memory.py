@@ -1,12 +1,14 @@
 class Memory:
-    def __int__(self):
+    def __init__(self):
         self.dict = {}
+        self.insertMemory()
 
 
-    def verifyMemory(self, size):
+    @staticmethod
+    def verifyMemory(memory, size):
         aux = 0
-        for elemento in self.memory.keys():
-            if self.memory[elemento] != '-':
+        for elemento in memory.keys():
+            if memory[elemento] != '-':
                 aux = 0
             else:
                 aux += 1
@@ -14,6 +16,7 @@ class Memory:
                     return elemento - (size - 1)
 
     def printMemory(self):
+        aux = 0
         for elemento in self.dict.keys():
             print(f'{elemento}\t {self.dict[elemento]}', end='\t\t\t')
             aux += 1
