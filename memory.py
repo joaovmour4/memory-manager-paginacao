@@ -3,7 +3,7 @@ from tkinter import *
 class Memory:
     def __init__(self):
         self.dict = {}
-        self.insertMemory()
+        self.insertMemory(20)
 
 
     @staticmethod
@@ -17,18 +17,32 @@ class Memory:
                 if aux == size:
                     return elemento - (size - 1)
 
-    def printMemory(self, root):
-        frame = Frame(root)
-        row = 0
+    def printMemory(self, frame):
+        lbls = []
+        row = 1
         column = 0
-        for elemento in self.dict.keys():
-            print(f'{elemento}.\t {self.dict[elemento]}', end='\t\t')
-            Label(frame, text=f'{elemento}. {self.dict[elemento]}').grid(row=row, column=column, pady=10, padx=10)
-            column += 1
-            if column == 5:
-                column = 0
-                row += 1
+        if len(lbls) == 0:
+            for elemento in self.dict.keys():
+                Label(frame, text=str(elemento), borderwidth=1, background='blue', fg='white').grid(row=row, column=column,
+                                                                                     padx=0, pady=3, sticky=W)
+                lbl = Label(frame, text=f'{self.dict[elemento]}',
+                            width=5, height=1, borderwidth=1, relief='solid')
+                lbls.append(lbl)
+                lbl.grid(row=row, column=column+1, pady=2, padx=(0,40))
+                column += 2
+                if column >= 10:
+                    column = 0
+                    row += 1
+        else:
+            for elemento in self.dict.keys():
+                lbls[elemento].grid_remove()
+                lbls[elemento]['text'] = f'{self.dict[elemento]}'
+                lbl.grid(row=row, column=column+1, pady=2, padx=10)
+                column += 2
+                if column >= 10:
+                    column = 0
+                    row += 1
 
-    def insertMemory(self):
-        for i in range(0, 20):
+    def insertMemory(self, qtElement):
+        for i in range(0, qtElement):
             self.dict[i] = '-'

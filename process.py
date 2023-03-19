@@ -1,5 +1,6 @@
 import random
 import string
+from tkinter import *
 from memory import Memory
 
 class Process:
@@ -17,6 +18,8 @@ class Process:
                     for x in range(self.posInit, self.posInit + self.size):
                         memoryDict[x] = self.id
         else:
+            # msg = Message(self.root)
+            # msg.showinfo(title='teste', message=f'O processo {self.id} não foi alocado por falta de memória!')
             print(f'O processo {self.id} não foi alocado por falta de memória!')
 
     def removeDict(self, memoryDict):
@@ -24,3 +27,7 @@ class Process:
             if i == self.posInit:
                 for x in range(self.posInit, self.posInit + self.size):
                     memoryDict[x] = '-'
+
+    def __str__(self) -> str:
+        r = f'ID: {self.id}, Tamanho: {self.size}'
+        return r
