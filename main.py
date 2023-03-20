@@ -26,7 +26,7 @@ def execute(process, memory):
             if proc.time == 0:
                 process.remove(proc)
                 proc.removeDict(memory.dict)
-        sleep(1)
+        sleep(2)
 
 def addProcess(process, memory):
     proc1 = Process(memory.dict, frame)
@@ -38,28 +38,26 @@ def printProcess():
         process[i].label.grid(column=10, row=i+1, sticky=W, padx=5, pady=3)
 
 root = Tk()
+root.title('Gerenciador de memória')
 root.option_readfile("optionDB.txt")
+root.geometry('805x150')
+root.resizable(False,False)
 frame = Frame(root)
 memory = Memory(frame)
 process = []
 processWidgets = []
 
-
-for i in range(0, 7):
-    process.append(Process(memory.dict, frame))
+memory.printMemory()
+printProcess()
 
 Label(frame, text='Memória:').grid(column=0, row=0, padx=0, pady=0, columnspan=10)
-Label(frame, text='Processos:').grid(column=10, row=0, padx=0, pady=0, sticky=W)
+Label(frame, text='Processos:').grid(column=10, row=0, padx=0, pady=0)
 
 
 Button(frame, text='Executar', command=start).grid(column=10, row=10, sticky=W, padx=5, pady=2)  
 Button(frame, text='Pause', command=stop).grid(column=11, row=10, sticky=W, padx=5, pady=2)
-Button(frame, text='Add processo', command=lambda:addProcess(process, memory)).grid(column=12, row=10, sticky=W, padx=5, pady=2)
+Button(frame, text='Add processo', command=lambda:addProcess(process, memory)).grid(column=12, row=10,
+                                                                                    sticky=W, padx=5, pady=2)
 
 frame.grid()
-
-# thread = threading.Thread(target=execute, args=(process, memory))
-# thread.start()
-# thread.run()
-
 root.mainloop()

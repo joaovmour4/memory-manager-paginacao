@@ -25,7 +25,7 @@ class Memory:
         if len(lbls) == 0:
             for elemento in self.dict.keys():
                 Label(self.frame, text=str(elemento), borderwidth=1, background='blue', fg='white').grid(row=row, column=column,
-                                                                                     padx=0, pady=3, sticky=W)
+                                                                                     padx=(10,0), pady=3, sticky=W)
                 lbl = Label(self.frame, text=f'{self.dict[elemento]}',
                             width=5, height=1, borderwidth=1, relief='solid')
                 lbls.append(lbl)
