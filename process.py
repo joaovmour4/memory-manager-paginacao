@@ -11,11 +11,12 @@ class Process:
             if tempID not in Process.processes:
                 break
         self.id = tempID
-        Process.processes.append(tempID)
         self.size = random.randint(1, 5)
         self.posInit = Memory.verifyMemory(memory, self.size)
         self.time = random.randint(1, 3)
-        self.insertDict(memory)
+        if self.posInit is not None:    
+            self.insertDict(memory)
+            Process.processes.append(tempID)
 
     def insertDict(self, memoryDict):
         if type(self.posInit) == int:
