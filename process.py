@@ -4,8 +4,14 @@ from tkinter import *
 from memory import Memory
 
 class Process:
+    processes = []
     def __init__(self, memory):
-        self.id = random.choice(string.ascii_uppercase)
+        while True:    
+            tempID = random.choice(string.ascii_uppercase)
+            if tempID not in Process.processes:
+                break
+        self.id = tempID
+        Process.processes.append(tempID)
         self.size = random.randint(1, 5)
         self.posInit = Memory.verifyMemory(memory, self.size)
         self.time = random.randint(1, 3)
@@ -27,6 +33,7 @@ class Process:
             if i == self.posInit:
                 for x in range(self.posInit, self.posInit + self.size):
                     memoryDict[x] = '-'
+        Process.processes.remove(self.id)
 
     def __str__(self) -> str:
         r = f'ID: {self.id}, Tamanho: {self.size}'

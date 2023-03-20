@@ -1,9 +1,10 @@
 from tkinter import *
 
 class Memory:
-    def __init__(self):
+    def __init__(self, frame):
         self.dict = {}
         self.insertMemory(20)
+        self.frame = frame
 
 
     @staticmethod
@@ -17,15 +18,15 @@ class Memory:
                 if aux == size:
                     return elemento - (size - 1)
 
-    def printMemory(self, frame):
+    def printMemory(self):
         lbls = []
         row = 1
         column = 0
         if len(lbls) == 0:
             for elemento in self.dict.keys():
-                Label(frame, text=str(elemento), borderwidth=1, background='blue', fg='white').grid(row=row, column=column,
+                Label(self.frame, text=str(elemento), borderwidth=1, background='blue', fg='white').grid(row=row, column=column,
                                                                                      padx=0, pady=3, sticky=W)
-                lbl = Label(frame, text=f'{self.dict[elemento]}',
+                lbl = Label(self.frame, text=f'{self.dict[elemento]}',
                             width=5, height=1, borderwidth=1, relief='solid')
                 lbls.append(lbl)
                 lbl.grid(row=row, column=column+1, pady=2, padx=(0,40))
