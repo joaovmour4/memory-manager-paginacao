@@ -5,7 +5,7 @@ from memory import Memory
 
 class Process:
     processes = []
-    def __init__(self, memory):
+    def __init__(self, memory, frame):
         while True:    
             tempID = random.choice(string.ascii_uppercase)
             if tempID not in Process.processes:
@@ -16,7 +16,8 @@ class Process:
         self.time = random.randint(1, 3)
         if self.posInit is not None:    
             self.insertDict(memory)
-            Process.processes.append(tempID)
+        Process.processes.append(tempID)
+        self.label = Label(frame, text=self.__str__(), borderwidth=1, relief='solid')
 
     def insertDict(self, memoryDict):
         if type(self.posInit) == int:
@@ -34,6 +35,7 @@ class Process:
             if i == self.posInit:
                 for x in range(self.posInit, self.posInit + self.size):
                     memoryDict[x] = '-'
+        self.label.grid_remove()
         Process.processes.remove(self.id)
 
     def __str__(self) -> str:
