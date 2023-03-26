@@ -34,7 +34,7 @@ class Process:
         for i in memoryDict.keys():
             if i == self.posInit:
                 for x in range(self.posInit, self.posInit + self.size):
-                    memoryDict[x] = '-'
+                    memoryDict[x] = ' '
         self.label.grid_remove()
         Process.processes.remove(self.id)
 

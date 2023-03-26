@@ -11,7 +11,7 @@ class Memory:
     def verifyMemory(memory, size):
         aux = 0
         for elemento in memory.keys():
-            if memory[elemento] != '-':
+            if memory[elemento] != ' ':
                 aux = 0
             else:
                 aux += 1
@@ -46,4 +46,4 @@ class Memory:
 
     def insertMemory(self, qtElement):
         for i in range(0, qtElement):
-            self.dict[i] = '-'
+            self.dict[i] = ' '
